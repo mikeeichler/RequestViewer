@@ -1,0 +1,14 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: go-server
+    src: ./go-server
+    engine: custom
+    commands:
+      - go get
+      - go build main.go
+    run: ./main
+    include:
+      - main
+    public_routes:
+      - "/"
