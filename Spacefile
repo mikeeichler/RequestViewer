@@ -10,5 +10,15 @@ micros:
     run: ./main
     include:
       - main
+      - templates
+      # - templates/index.html
+      - templates/static
+      # - templates/static/index.js
     public_routes:
       - "/"
+      - "/api"
+      - "/static/*"
+    presets:
+      env:
+        - name: RV_KEY
+        - name: DA_CLOUD_LICENSE
