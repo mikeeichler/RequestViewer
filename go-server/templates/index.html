@@ -5,17 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Request Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+    <script type="text/javascript" src="https://rv.mikee.site/static/index.js"></script>
+    <script type="text/javascript" src="https://cs.deviceatlas-cdn.com/dacs.js" async></script>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body onload="load()">
-    <div id="content">Loading...
+  <body>
+    <input type="button" value="iPhone 14" onClick="load(this.value)">
+    <input type="button" value="iPhone 14 Pro" onClick="load(this.value)">
+    <input type="button" value="iPhone 14 Pro Max" onClick="load(this.value)">
+    <input type="button" value="iPhone 14 Plus" onClick="load(this.value)">
+    <input type="button" value="iPhone SE (3rd generation)" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPhone 13" onClick="load(this.value)">
+    <input type="button" value="iPhone 13 mini" onClick="load(this.value)">
+    <input type="button" value="iPhone 13 Pro" onClick="load(this.value)">
+    <input type="button" value="iPhone 13 Pro Max" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPhone 12" onClick="load(this.value)">
+    <input type="button" value="iPhone 12 Pro" onClick="load(this.value)">
+    <input type="button" value="iPhone 12 Pro Max" onClick="load(this.value)">
+    <input type="button" value="iPhone 12 Mini" onClick="load(this.value)">
+    <input type="button" value="iPhone SE (2nd generation)" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPhone 11" onClick="load(this.value)">
+    <input type="button" value="iPhone 11 Pro" onClick="load(this.value)">
+    <input type="button" value="iPhone 11 Pro Max" onClick="load(this.value)">
+    <input type="button" value="iPhone XR" onClick="load(this.value)">
+    <input type="button" value="iPhone XS" onClick="load(this.value)">
+    <input type="button" value="iPhone XS Max" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPhone X" onClick="load(this.value)">
+    <input type="button" value="iPhone 8" onClick="load(this.value)">
+    <input type="button" value="iPhone 8 Plus" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPad Pro (12.9 6th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (11 4th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (12.9 5th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (11 3rd Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (12.9 4th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (11 2nd Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (12.9 3rd Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (11)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (12.9 2nd Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (10.5)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro (9.7)" onClick="load(this.value)">
+    <input type="button" value="iPad Pro" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPad mini 6" onClick="load(this.value)">
+    <input type="button" value="iPad mini 5" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPad Air 5" onClick="load(this.value)">
+    <input type="button" value="iPad Air 4" onClick="load(this.value)">
+    <input type="button" value="iPad Air 3" onClick="load(this.value)">
+  </br>
+    <input type="button" value="iPad (10th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad (9th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad (8th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad (7th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad (6th Gen)" onClick="load(this.value)">
+    <input type="button" value="iPad (5th Gen)" onClick="load(this.value)">
+    <!-- <div id="content">Loading...
     <table>
     {{range $name, $value := .}}
         <tr><td>{{$name}}</td><td>{{$value}}</td></tr>
     {{end}}
-    </table>
+    </table> -->
   </div>
-	<script type="text/javascript" src="https://rv.mikee.site/static/index.js"></script>
-	<script type="text/javascript" src="https://cs.deviceatlas-cdn.com/dacs.js" async></script>
   </body>
 </html>
+
