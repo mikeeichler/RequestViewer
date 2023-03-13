@@ -1,3 +1,4 @@
 .space
+.idea
 go-server/out/*
 !go-server/out/.gitkeep
