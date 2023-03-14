@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"io"
+	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -10,7 +9,7 @@ import (
 	"time"
 )
 
-func getData(headers map[string]string) {
+func getData(headers map[string]string) (m map[string]map[string]string) {
 	url := "http://region2.deviceatlascloud.com:80/v1/detect/properties?licencekey="
 	licenseKey := os.Getenv("DA_LICENSE")
 	url += licenseKey
@@ -28,16 +27,16 @@ func getData(headers map[string]string) {
 		} else {
 			req.Header.Add(h, v)
 		}
+		req.Header.Add("Accept", "*/*")
 	}
 	client := &http.Client{Timeout: 10 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal("didn't get e response from DA cloud", err)
 	}
-	log.Println(url)
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal("unreadable response", err)
-	}
-	fmt.Println(body)
+	defer resp.Body.Close()
+	m = make(map[string]map[string]string)
+	// https://stackoverflow.com/questions/17156371/how-to-get-json-response-from-http-get
+	json.NewDecoder(resp.Body).Decode(&m)
+	return m
 }

@@ -19,7 +19,12 @@ func api(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	// get DA data
-	getData(responseData)
+	daData := getData(responseData)
+
+	// add DA data to the response map
+	for prop, val := range daData["properties"] {
+		responseData[prop] = val
+	}
 
 	// DB access seems a bit slow, it can be done
 	// concurrently with sending the response
