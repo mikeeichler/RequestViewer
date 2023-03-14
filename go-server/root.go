@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func root(writer http.ResponseWriter, request *http.Request) {
@@ -14,7 +16,9 @@ func root(writer http.ResponseWriter, request *http.Request) {
 	}
 	for name, values := range request.Header {
 		// Loop over all values for the name.
-		writer.Header().Set("Accept-CH", "Sec-CH-UA, Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version")
+		clientHintSlice := clientHints()
+		ch := fmt.Sprintf(strings.Join(clientHintSlice[:], ","))
+		writer.Header().Set("Accept-CH", ch)
 		writer.Header().Set("X-Clacks-Overhead", "GNU Terry Pratchett")
 		for _, value := range values {
 			// fmt.Println(name, value)
