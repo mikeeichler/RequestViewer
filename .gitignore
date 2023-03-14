@@ -2,3 +2,4 @@
 .idea
 go-server/out/*
 !go-server/out/.gitkeep
+.DS_Store

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"strings"
 	"sync"
 )
 
@@ -36,10 +35,11 @@ func api(writer http.ResponseWriter, request *http.Request) {
 		defer wg.Done()
 
 		// prepare a special map for DB
-		// the data in it has lowercased headers, better keep that
+		// ~~the data in it has lowercased headers, better keep that~~
 		DBEntries := make(map[string]string)
 		for k, v := range responseData {
-			DBEntries[strings.ToLower(k)] = v
+			//DBEntries[strings.ToLower(k)] = v
+			DBEntries[k] = v
 		}
 		key, err := db.Put(DBEntries)
 		if err != nil {

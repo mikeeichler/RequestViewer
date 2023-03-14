@@ -6,7 +6,7 @@ micros:
     engine: custom
     commands:
       - go get
-      - go build main.go
+      - go build -o main
     run: ./main
     include:
       - main
@@ -21,4 +21,4 @@ micros:
     presets:
       env:
         - name: RV_KEY
-        - name: DA_CLOUD_LICENSE
+        - name: DA_LICENSE
