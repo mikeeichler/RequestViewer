@@ -31,6 +31,11 @@ function load(device) {
       } else {
         videoObject.set('PR422', false)
       }
+      videoObject.set('innerHeight', window.innerHeight)
+      videoObject.set('screenHeight', screen.height)
+      videoObject.set('screenAvailHeight', screen.availHeight)
+      videoObject.set('devicePixelRatio', window.devicePixelRatio)
+        
     fetch("/api", {
         method: 'GET',
         headers: {
@@ -38,14 +43,19 @@ function load(device) {
             'X-PR422': videoObject.get('PR422'),
             'X-PR4444': videoObject.get('PR4444'),
             'X-WEBGL-HASH': videoObject.get('webglHash'),
-            'X-ACTUAL-DEVICE': device
+            'X-ACTUAL-DEVICE': device,
+            'X-INNER-HEIGHT': videoObject.get('innerHeight'),
+            'X-SCREEN-HEIGHT': videoObject.get('screenHeight'),
+            'X-SCREEN-AVAIL-HEIGHT': videoObject.get('screenAvailHeight'),
+            'X-DPR': videoObject.get('devicePixelRatio'),
         }},)
     .then((response) => response.json())
     .then((data) => {
         console.log(data)
+        window.location.reload(true)
         document.getElementById("content").style.visibility = "visible";
         document.getElementById("content").innerHTML = jsonToTable(data);
-        document.write(jsonToTable(data))
+        // document.write(jsonToTable(data))
     })
     const tw13 = twelve13();
     console.log(tw13)
