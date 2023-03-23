@@ -33,6 +33,7 @@ func main() {
 	}
 	mux.HandleFunc("/", root)
 	mux.HandleFunc("/api", api)
+	mux.HandleFunc("/logs", logs)
 	// this enables serving JavaScript and CSS
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./templates/static/"))))
 	if err := httpServer.ListenAndServe(); err == http.ErrServerClosed {
