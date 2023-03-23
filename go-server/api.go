@@ -14,6 +14,7 @@ func api(writer http.ResponseWriter, request *http.Request) {
 	for name, values := range request.Header {
 		for _, value := range values {
 			responseData[name] = value
+			log.Println("responseData - ", name, ": ", value)
 		}
 	}
 

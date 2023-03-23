@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -17,18 +16,15 @@ func getData(headers map[string]string) (m map[string]map[string]string) {
 	if err != nil {
 		log.Fatal("can't send request to da servers", err)
 	}
+	// req.Header.Set("X-DA-Client-Properties", headers["Daprops"])
+	req.Header["X-DA-Client-Properties"] = []string{headers["Daprops"]}
+	log.Println("X-DA-Client-Properties: '", req.Header["X-DA-Client-Properties"], "'")
+	req.Header.Add("Accept", "*/*")
 	for h, v := range headers {
-		ch := clientHints()
-		if inSlice(h, ch) || h == "User-Agent" {
-			req.Header.Add("X-DA-"+h, v)
-		} else if strings.EqualFold(h, "cookie") {
-			c := dapropsFromCookie(v)
-			req.Header.Add("X-DA-Client-Properties", c)
-		} else {
-			req.Header.Add(h, v)
-		}
-		req.Header.Add("Accept", "*/*")
+		// ch := clientHints()
+		req.Header["X-DA-"+h] = []string{v}
 	}
+	log.Println("headers sent to cloud: ", req.Header)
 	client := &http.Client{Timeout: 10 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -38,5 +34,6 @@ func getData(headers map[string]string) (m map[string]map[string]string) {
 	m = make(map[string]map[string]string)
 	// https://stackoverflow.com/questions/17156371/how-to-get-json-response-from-http-get
 	json.NewDecoder(resp.Body).Decode(&m)
+	log.Println("respones map: ", m)
 	return m
 }

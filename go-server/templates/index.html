@@ -8,6 +8,16 @@
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>-->
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>-->
     <script type="text/javascript" src="https://rv.mikee.site/static/index.js"></script>
+    <script>
+      var DAPROPS = ""
+      var DeviceAtlas = {cacheType: "none",
+      onPropertiesUpdate: function(properties, propertiesAsString) {
+        DAPROPS = propertiesAsString;
+        // expects function - default undefined, pass function to capture properties updates
+        // properties will be object containing all properties detected by DeviceAtlas client-side
+        // propertiesAsString would have properties as string acceptable by DeviceAtlas API
+    },}
+    </script>
     <script type="text/javascript" src="https://cs.deviceatlas-cdn.com/dacs.js" async></script>
     <link rel="stylesheet" href="style.css">
   </head>

@@ -24,6 +24,7 @@ function jsonToTable(j) {
 }
 
 function load(device) {
+  // console.log(DeviceAtlas.)
       const videoObject = new Map();
       var video = document.createElement('video');
       if (video.canPlayType('video/mp4; codecs="ap4h.2, mp4a.40.2"')) {
@@ -39,6 +40,7 @@ function load(device) {
     fetch("/api", {
         method: 'GET',
         headers: {
+            DAPROPS,
             'Accept': 'application/json',
             'X-PR422': videoObject.get('PR422'),
             'X-PR4444': videoObject.get('PR4444'),
@@ -52,7 +54,7 @@ function load(device) {
     .then((response) => response.json())
     .then((data) => {
         console.log(data)
-        window.location.reload(true)
+        // window.location.reload(true)
         document.getElementById("content").style.visibility = "visible";
         document.getElementById("content").innerHTML = jsonToTable(data);
         // document.write(jsonToTable(data))
