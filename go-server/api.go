@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 	"sync"
 )
 
@@ -12,6 +13,9 @@ func api(writer http.ResponseWriter, request *http.Request) {
 
 	responseData["timestamp"] = timestamp()
 	for name, values := range request.Header {
+		if inSlice(strings.ToLower(name), []string{"x-real-ip", "x-forwarded-for"}) {
+			continue
+		}
 		for _, value := range values {
 			responseData[name] = value
 			log.Println("responseData - ", name, ": ", value)
