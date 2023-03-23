@@ -25,6 +25,7 @@ func main() {
 	}
 	mux := http.NewServeMux()
 	port := os.Getenv("PORT")
+	log.Println("$PORT is: ", port)
 	httpServer := &http.Server{
 		// Addr:    "127.0.0.1:5550",
 		Addr:    fmt.Sprintf("127.0.0.1:%s", port),

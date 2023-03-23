@@ -8,6 +8,7 @@ micros:
       - go get
       - go build -o main
     run: ./main
+    dev: ./out/GoServer
     include:
       - main
       - templates
