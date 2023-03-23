@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -22,7 +23,9 @@ func getData(headers map[string]string) (m map[string]map[string]string) {
 	req.Header.Add("Accept", "*/*")
 	for h, v := range headers {
 		// ch := clientHints()
-		req.Header["X-DA-"+h] = []string{v}
+		if strings.ToLower(h) != "cookie" {
+			req.Header["X-DA-"+h] = []string{v}
+		}
 	}
 	log.Println("headers sent to cloud: ", req.Header)
 	client := &http.Client{Timeout: 10 * time.Second}

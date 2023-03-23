@@ -50,10 +50,12 @@ function load(device) {
             'X-SCREEN-HEIGHT': videoObject.get('screenHeight'),
             'X-SCREEN-AVAIL-HEIGHT': videoObject.get('screenAvailHeight'),
             'X-DPR': videoObject.get('devicePixelRatio'),
+            'X-MESSAGE': document.getElementById("message").value
         }},)
     .then((response) => response.json())
     .then((data) => {
         console.log(data)
+        document.getElementById("message").value = ''
         // window.location.reload(true)
         document.getElementById("content").style.visibility = "visible";
         document.getElementById("content").innerHTML = jsonToTable(data);
