@@ -19,16 +19,16 @@ func logs(writer http.ResponseWriter, request *http.Request) {
 		},
 	)
 	if err != nil {
-		log.Fatal("couldn't fetch data from db, ", err)
+		log.Println("couldn't fetch data from db, ", err)
 	}
 
 	writer.Header().Set("Content-Type", "application/json")
 	responseJSON, err := json.Marshal(data)
 	if err != nil {
-		log.Fatal("couldn't create response JSON from data, ", err)
+		log.Println("couldn't create response JSON from data, ", err)
 	}
 	_, err = writer.Write(responseJSON)
 	if err != nil {
-		log.Fatal("couldn't send response, ", err)
+		log.Println("couldn't send response, ", err)
 	}
 }

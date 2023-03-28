@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
 	"sync"
+	"time"
 )
 
 func api(writer http.ResponseWriter, request *http.Request) {
@@ -42,15 +44,22 @@ func api(writer http.ResponseWriter, request *http.Request) {
 		// prepare a special map for DB
 		// ~~the data in it has lowercased headers, better keep that~~
 		DBEntries := make(map[string]string)
+		log.Println("preparing log entries")
 		for k, v := range responseData {
 			//DBEntries[strings.ToLower(k)] = v
 			DBEntries[k] = v
 		}
-		key, err := db.Put(DBEntries)
-		if err != nil {
-			log.Fatal("can't store data in dB", err)
-		} else {
-			log.Printf("stored %s in the db\n", key)
+		for failCounter := 0; failCounter < 5; failCounter++ {
+			log.Printf("db attempt %d", failCounter)
+			key, err := db.Put(DBEntries)
+			if err != nil {
+				e := fmt.Sprintf("can't store data in DB: %s, attempt: %d", err, failCounter)
+				log.Println(e)
+			} else {
+				log.Printf("stored %s in the db, attempt %d\n", key, failCounter)
+				break
+			}
+			time.Sleep(1 / 10)
 		}
 	}()
 
@@ -58,11 +67,11 @@ func api(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	responseJSON, err := json.Marshal(responseData)
 	if err != nil {
-		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		log.Println("Error happened in JSON marshal. Err: %s", err)
 	}
 	_, err = writer.Write(responseJSON)
 	if err != nil {
-		log.Fatal("can't send a response", err)
+		log.Println("can't send a response", err)
 	} else {
 		log.Println("response sent")
 	}

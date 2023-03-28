@@ -17,11 +17,11 @@ func main() {
 	detaKey := os.Getenv("RV_KEY")
 	d, err := deta.New(deta.WithProjectKey(detaKey))
 	if err != nil {
-		log.Fatal("can't connect to the DB")
+		log.Println("can't connect to the DB")
 	}
 	db, err = base.New(d, "logs")
 	if err != nil {
-		log.Fatal("failed to init new Base instance:", err)
+		log.Println("failed to init new Base instance:", err)
 	}
 	mux := http.NewServeMux()
 	port := os.Getenv("PORT")
@@ -39,7 +39,7 @@ func main() {
 	if err := httpServer.ListenAndServe(); err == http.ErrServerClosed {
 		log.Println("Web server closed")
 	} else {
-		log.Fatalln(err)
+		log.Println(err)
 	}
 
 }

@@ -15,7 +15,7 @@ func getData(headers map[string]string) (m map[string]map[string]string) {
 	url += licenseKey
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
-		log.Fatal("can't send request to da servers", err)
+		log.Println("can't send request to da servers", err)
 	}
 	// req.Header.Set("X-DA-Client-Properties", headers["Daprops"])
 	req.Header["X-DA-Client-Properties"] = []string{headers["Daprops"]}
@@ -31,7 +31,7 @@ func getData(headers map[string]string) (m map[string]map[string]string) {
 	client := &http.Client{Timeout: 10 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal("didn't get e response from DA cloud", err)
+		log.Println("didn't get e response from DA cloud", err)
 	}
 	defer resp.Body.Close()
 	m = make(map[string]map[string]string)
