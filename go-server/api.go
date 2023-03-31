@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -53,13 +52,12 @@ func api(writer http.ResponseWriter, request *http.Request) {
 			log.Printf("db attempt %d", failCounter)
 			key, err := db.Put(DBEntries)
 			if err != nil {
-				e := fmt.Sprintf("can't store data in DB: %s, attempt: %d", err, failCounter)
-				log.Println(e)
+				log.Printf("can't store data in DB: %s, attempt: %d", err, failCounter)
 			} else {
 				log.Printf("stored %s in the db, attempt %d\n", key, failCounter)
 				break
 			}
-			time.Sleep(1 / 10)
+			time.Sleep(1 / 100)
 		}
 	}()
 

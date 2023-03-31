@@ -21,6 +21,7 @@ micros:
       - "/static/*"
     presets:
       env:
+        - name: RV_DB_KEY
         - name: RV_KEY
         - name: DA_LICENSE
       api_keys: true

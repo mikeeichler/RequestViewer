@@ -14,7 +14,7 @@ import (
 var db *base.Base
 
 func main() {
-	detaKey := os.Getenv("RV_KEY")
+	detaKey := os.Getenv("RV_DB_KEY")
 	d, err := deta.New(deta.WithProjectKey(detaKey))
 	if err != nil {
 		log.Println("can't connect to the DB")
