@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta property="og:title" content="{{.ua}}" />
+  <meta property="og:image" content="static/logo.png" />
+  <meta property="og:description" content="{{.requestString}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rv.mikee.site" />
+  <title>UA Viewer</title>
+</head>
+<body>
+  <table>
+    {{range $name, $value := .}}
+    <tr><td>{{$name}}</td><td>{{$value}}</td></tr>
+    {{end}}
+  </table>
+</body>
+</html>

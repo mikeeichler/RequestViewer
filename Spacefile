@@ -19,6 +19,8 @@ micros:
       - "/"
       - "/api"
       - "/static/*"
+      - "/ua_viewer"
+      - "/ua_viewer/*"
     presets:
       env:
         - name: RV_DB_KEY
