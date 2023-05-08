@@ -34,7 +34,7 @@ func main() {
 	mux.HandleFunc("/api", api)
 	mux.HandleFunc("/logs", logs)
 	mux.HandleFunc("/ua_viewer/", uaViewer)
-	mux.HandleFunc("/ua_viewer/{rest:([a-zA-Z0-9=\\-\\/])*}", uaViewer)
+	//mux.HandleFunc("/ua_viewer/{message:([a-zA-Z0-9=\\-\\/])*}", uaViewer)
 	mux.HandleFunc("/", root)
 	// this enables serving JavaScript and CSS
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./templates/static/"))))

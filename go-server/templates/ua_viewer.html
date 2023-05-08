@@ -8,12 +8,55 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://rv.mikee.site" />
   <title>UA Viewer</title>
+  <script>
+    var DAPROPS = ""
+    var DeviceAtlas = {cacheType: "none",
+      onPropertiesUpdate: function(properties, propertiesAsString) {
+        DAPROPS = propertiesAsString;
+        // expects function - default undefined, pass function to capture properties updates
+        // properties will be object containing all properties detected by DeviceAtlas client-side
+        // propertiesAsString would have properties as string acceptable by DeviceAtlas API
+      },}
+    function jsonToTable(j) {
+      let table = "<table><tr><th>Header</th><th>Value</th></tr>";
+      for (const k in j) {
+        table += `<tr><td>${k}</td><td>${j[k]}</td></tr>`;
+        if (k == "timestamp") {
+          timestamp = j[k];
+        }
+      }
+      table += '</table>'
+      return table;
+    }
+    function load(message) {
+      fetch("https://rv.mikee.site/api", {
+        method: 'GET',
+        headers: {
+          DAPROPS,
+          'Accept': 'application/json',
+          'X-Clacks-Overhead': 'GNU Terry Pratchett',
+          'X-MESSAGE': message
+        }},)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        document.getElementById("content").style.visibility = "visible";
+        document.getElementById("content").innerHTML = jsonToTable(data);
+        // document.write(jsonToTable(data))
+      })
+    }
+  </script>
+  <script type="text/javascript" src="https://cs.deviceatlas-cdn.com/dacs.js" async></script>
 </head>
 <body>
+<button style="width:100%; font-size: large" onclick="load('{{.message}}')">click</button>
   <table>
     {{range $name, $value := .}}
     <tr><td>{{$name}}</td><td>{{$value}}</td></tr>
     {{end}}
   </table>
+  <div id="content"></div>
+<script>
+</script>
 </body>
 </html>
