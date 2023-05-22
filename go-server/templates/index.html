@@ -58,7 +58,7 @@ function load(device) {
       videoObject.set('screenAvailHeight', screen.availHeight)
       videoObject.set('devicePixelRatio', window.devicePixelRatio)
         
-    fetch("/api", {
+    fetch("https://rv.mikee.site/api/", {
         method: 'GET',
         headers: {
             DAPROPS,

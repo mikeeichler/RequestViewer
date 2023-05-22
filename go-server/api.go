@@ -25,6 +25,7 @@ func api(writer http.ResponseWriter, request *http.Request) {
 
 	// get DA data
 	daData := getData(responseData)
+	log.Println(daData)
 
 	// add DA data to the response map
 	for prop, val := range daData["properties"] {

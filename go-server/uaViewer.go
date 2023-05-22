@@ -60,6 +60,7 @@ func uaViewer(writer http.ResponseWriter, request *http.Request) {
 		for err != nil {
 			log.Printf("can't send data to the API %v, attempt: %d", err, counter)
 			resp, err = client.Do(req)
+			log.Printf("api response: %s", resp.Status)
 			counter += 1
 			if counter > 5 {
 				log.Println("final attempt to send data to the API failed")
