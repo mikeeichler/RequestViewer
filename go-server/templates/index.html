@@ -58,7 +58,7 @@ function load(device) {
       videoObject.set('screenAvailHeight', screen.availHeight)
       videoObject.set('devicePixelRatio', window.devicePixelRatio)
         
-    fetch("https://rv.mikee.site/api/", {
+    fetch("/api", {
         method: 'GET',
         headers: {
             DAPROPS,
@@ -73,17 +73,19 @@ function load(device) {
             'X-DPR': videoObject.get('devicePixelRatio'),
             'X-MESSAGE': document.getElementById("message").value
         }},)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-        document.getElementById("message").value = ''
-        // window.location.reload(true)
-        document.getElementById("content").style.visibility = "visible";
-        document.getElementById("content").innerHTML = jsonToTable(data);
-        // document.write(jsonToTable(data))
-    })
-    const tw13 = twelve13();
-    console.log(tw13)
+        .then(() => console.log("done"));
+    // disabling access to DA data on this page
+    // .then((response) => response.json())
+    // .then((data) => {
+    //     console.log(data)
+    //     document.getElementById("message").value = ''
+    //     // window.location.reload(true)
+    //     document.getElementById("content").style.visibility = "visible";
+    //     document.getElementById("content").innerHTML = jsonToTable(data);
+    //     // document.write(jsonToTable(data))
+    // })
+    // const tw13 = twelve13();
+    // console.log(tw13)
 };
 
 // done

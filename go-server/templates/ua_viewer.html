@@ -37,13 +37,15 @@
           'X-Clacks-Overhead': 'GNU Terry Pratchett',
           'X-MESSAGE': message
         }},)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        document.getElementById("content").style.visibility = "visible";
-        document.getElementById("content").innerHTML = jsonToTable(data);
-        // document.write(jsonToTable(data))
-      })
+              .then(() => console.log("done"))
+      // disabling access to da data
+      // .then((response) => response.json())
+      // .then((data) => {
+      //   console.log(data)
+      //   document.getElementById("content").style.visibility = "visible";
+      //   document.getElementById("content").innerHTML = jsonToTable(data);
+      //   // document.write(jsonToTable(data))
+      // })
     }
   </script>
   <script type="text/javascript" src="https://cs.deviceatlas-cdn.com/dacs.js" async></script>
