@@ -15,12 +15,12 @@ micros:
       # - templates/index.html
       - templates/static
       # - templates/static/index.js
-#    public_routes:
+    public_routes:
      # - "/"
      # - "/api"
      # - "/static/*"
      # - "/ua_viewer"
-     # - "/ua_viewer/*"
+      - "/ua_viewer/*"
     presets:
       env:
         - name: RV_DB_KEY
